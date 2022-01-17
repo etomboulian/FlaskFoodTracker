@@ -35,8 +35,8 @@ def index():
             '''
                 select sum(protein) as protein, sum(carbohydrates) as carbohydrates, sum(fat) as fat, sum(calories) as calories
                 from log_date ld
-                join food_date fd on fd.log_date_id = ld.id
-                join food f on fd.food_id = f.id 
+                left join food_date fd on fd.log_date_id = ld.id
+                left join food f on fd.food_id = f.id 
                 where entry_date = ?
             ''', [i['entry_date']])
         stats = stats_cur.fetchone()
